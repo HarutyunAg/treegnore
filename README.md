@@ -10,8 +10,8 @@ treegnore
 ├── treegnore
 │   ├── __init__.py
 │   ├── cli.py            # Handles command-line args using argparse
-│   ├── parser.py         # Contains code to parse .gitignore
-│   └── treegnore.py      # Core logic for generating the directory tree
+│   ├── parser.py         # Parse .gitignore and generating the tree
+│   └── treegnore.py      # Core class for using
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
