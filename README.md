@@ -16,27 +16,16 @@ treegnore
 ├── pyproject.toml
 ├── README.md
 └── tree.py
-```
 
-## Setup
-
-```bash
-    git clone https://github.com/yourusername/treegnore.git
-    cd treegnore
-    poetry shell
-```
-### 🌳How to plant a tree?
+## How to plant a tree?
 
 ```bash
-    python tree.py path/to/project/root
+python tree.py path/to/project/root
 ```
 
-### 💾 Save the Tree to a File  
-Want to save the tree?
-
-Use the -o or --output flag:
+Show only directories (exclude files):
 
 ```bash
-    python tree.py path/to/project/root -o tree.txt
+python tree.py path/to/project/root -d
 ```
-This saves the tree structure to a file named tree.txt in the project root directory.
+
