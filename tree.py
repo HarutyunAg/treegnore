@@ -8,7 +8,8 @@ def main():
 
         tree_generator = Treegnore(
             project_directory=args.project_directory,
-            output_fname=args.output
+            output_fname=args.output,
+            dirs_only=args.dirs_only
         )
         tree_generator.grow_project_tree()
 

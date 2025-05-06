@@ -17,6 +17,7 @@ class CLIParser:
         PARSER_DESC = "Generate a directory tree structure while respecting .gitignore."
         HELP_ARG_DIR = "Specify path to the project directory."
         HELP_ARG_OUT = "Specify output file name to save the tree structure to the project root dir."
+        HELP_ARG_DIRS_ONLY = "Display only directories (exclude files) in the tree structure."
 
         parser = argparse.ArgumentParser(description=PARSER_DESC)
         parser.add_argument(
@@ -30,6 +31,13 @@ class CLIParser:
             default="",
             help=HELP_ARG_OUT,
             type=str
+        )
+        
+        parser.add_argument(
+            "-d", "--dirs-only",
+            action="store_true",  # This makes it a flag that doesn't require a value
+            help=HELP_ARG_DIRS_ONLY,
+            default=False
         )
         return parser
 

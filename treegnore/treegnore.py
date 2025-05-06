@@ -8,11 +8,15 @@ class Treegnore:
             self,
             output_fname: Path,
             project_directory: Path,
+            dirs_only: bool
             ):
 
         self.root = project_directory
         self.output_fname = output_fname
-        self.tree = DirectoryTree(project_directory)
+        self.tree = DirectoryTree(
+                project_directory,
+                dirs_only
+                )
 
     def grow_project_tree(self):
         tree_structure = self.tree.grow()

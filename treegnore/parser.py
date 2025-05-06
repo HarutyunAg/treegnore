@@ -20,17 +20,23 @@ class GitignoreParser:
 
 class DirectoryTree:
 
-    def __init__(self, project_directory: Path):
+    def __init__(self, project_directory: Path, dirs_only: bool = False):
         self.project_directory = project_directory
+        self.dirs_only = dirs_only
         self.gitignore_parser = GitignoreParser(project_directory)
 
     def grow(self):
         return self.__grow_tree(self.project_directory)
 
     def __grow_tree(self, directory: Path, prefix: str = "") -> str:
+        entries = sorted(
+                directory.iterdir(),
+                key=lambda e: (e.is_file(), e.name.lower())
+                )
+        
+        if self.dirs_only:
+            entries = [e for e in entries if e.is_dir()]
 
-        entries = sorted(directory.iterdir(),
-                         key=lambda e: (e.is_file(), e.name.lower()))
         tree_structure = []
 
         for idx, entry in enumerate(entries):
@@ -39,12 +45,16 @@ class DirectoryTree:
             if self.gitignore_parser.is_ignored(entry):
                 continue
 
-            is_last_idx: bool = idx == len(entries) - 1
+            is_last_idx = idx == len(entries) - 1
             connector = "└── " if is_last_idx else "├── "
 
             tree_structure.append(f"{prefix}{connector}{entry.name}")
+            
             if entry.is_dir():
-                new_prefix = prefix + ("    " if idx == len(entries) - 1 else "│   ")
-                tree_structure.append(self.__grow_tree(entry, new_prefix))
+                new_prefix = prefix + ("    " if is_last_idx else "│   ")
+                subtree = self.__grow_tree(entry, new_prefix)
+                if subtree:  # Only append if the subtree is not empty
+                    tree_structure.append(subtree)
 
-        return "\n".join(tree_structure)
+        return "\n".join([line for line in tree_structure if line])
+
