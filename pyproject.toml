@@ -1,14 +1,7 @@
-[tool.poetry]
+[project]
 name = "treegnore"
-version = "0.1.0"
-description = ""
-authors = ["Harutyun <harutyun.ag.petr@gmail.com>"]
+version = "0.2.0"
+description = "🌳grow directory trees, skipping .gitignore files"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.13"
+dependencies = []
