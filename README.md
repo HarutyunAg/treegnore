@@ -16,6 +16,7 @@ treegnore
 ├── pyproject.toml
 ├── README.md
 └── tree.py
+```
 
 ## How to plant a tree?
 
